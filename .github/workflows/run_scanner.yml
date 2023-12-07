@@ -2,7 +2,7 @@ name: Run inbound rules scanner in Docker Container
 
 on:
    schedule:
-       - cron: '*/5 * * * *'
+       - cron: '*/2 * * * *'
 
 jobs:
   build-and-run:
@@ -34,5 +34,5 @@ jobs:
         run: |
           docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_TOKEN
           
-          docker run --name inbound_rule_scanner -d -it -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e S3_BUCKET_NAME -e REGION dockerprojectuser/inbound_rules_scaner:$(git rev-parse --short HEAD)
+          docker run --name inbound_rule_scanner -d -it -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e S3_BUCKET_NAME -e REGION dockerprojectuser/inbound_rules_scaner:$(git rev-parse --short HEAD) /bin/bash
           docker exec inbound_rule_scanner sh -c "python scanner/in_scanner.py"  
