@@ -1,4 +1,4 @@
-name: Run inbound rules scanner in Docker Container
+name: Run inbound rules scanner in Docker Container 
 
 on:
    schedule:
