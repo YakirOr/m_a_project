@@ -9,7 +9,7 @@ REGION = os.environ.get('REGION')
 S3_BUCKET_NAME = os.environ.get('S3_BUCKET_NAME')
 
 
-#build session
+#build aws session
 session = boto3.Session(
     aws_access_key_id=AWS_ACCESS_KEY_ID,
     aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
