@@ -34,5 +34,3 @@ jobs:
           file: ./scanner/Dockerfile
           push: true
           tags: dockerprojectuser/inbound_rules_scaner:${{ steps.commit.outputs.short }}
-
-
