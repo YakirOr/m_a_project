@@ -1,0 +1,38 @@
+name: Docker Run Docker Container
+
+on:
+   schedule:
+       - cron: '0 8 * * *'
+
+jobs:
+  build-and-run:
+    name: main
+    runs-on: ubuntu-latest
+    
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      REGION: ${{ secrets.REGION }}
+      
+      S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
+
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    steps:
+      -
+          uses: actions/checkout@v2
+      -
+          name: Get the last commit hash of master
+          run: |
+            git fetch --depth=1 origin main
+            echo "The last commit hash in master is $(git rev-parse --short HEAD)"
+            conn=$(git rev-parse --short HEAD)
+            echo $conn            
+      -
+        name: Run Docker container
+        run: |
+          docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_TOKEN
+          
+          docker run --name scanner_test -d -it -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e S3_BUCKET_NAME -e REGION dockerprojectuser/inbound_rules_scaner:$(git rev-parse --short HEAD) /bin/bash
+          docker exec scanner_test sh -c "python scanner/in_scanner.py"  
