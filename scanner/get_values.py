@@ -1,6 +1,10 @@
 import os
 import boto3
+import sys
+import dryable
 
+
+dryable.set( '--dry-run' in sys.argv )
 
 # Get env variables
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')

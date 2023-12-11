@@ -1,6 +1,5 @@
-import os 
+import os
 import boto3
-import dryable
 from get_values import *
 from botocore.exceptions import ClientError
 
