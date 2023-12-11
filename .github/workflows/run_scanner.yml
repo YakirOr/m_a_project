@@ -2,7 +2,7 @@ name: Run inbound rules scanner in Docker Container
 
 on:
    schedule:
-       - cron: '*/1 * * * *'
+       - cron: '* * * * *'
 
 jobs:
   build-and-run:
