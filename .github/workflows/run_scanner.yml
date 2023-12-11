@@ -28,7 +28,7 @@ jobs:
             git fetch --depth=1 origin main
             echo "The last commit hash in master is $(git rev-parse --short HEAD)"
             conn=$(git rev-parse --short HEAD)
-            echo $conn            
+            echo $conn
       -
         name: Run Docker container
         run: |
