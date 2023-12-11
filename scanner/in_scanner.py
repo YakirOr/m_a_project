@@ -37,6 +37,7 @@ for rule in response['SecurityGroupRules']:
           anythingPrinted = True
           #---call to delete rule function---
           revokerule(rule['GroupId'], rule['SecurityGroupRuleId'])        
+          print ("still in if")
     except KeyError:
         if anythingPrinted:
                time.sleep(5)
