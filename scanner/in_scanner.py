@@ -33,12 +33,14 @@ for rule in response['SecurityGroupRules']:
         #   print("to_port: " + str(rule['ToPort']))
           with open(log_file_name, 'a+') as file:
            file.writelines('sg name:' + rule['GroupId'] +  ','+' ' + 'sgr_id: ' + rule['SecurityGroupRuleId'] +  ' ' + 'from_cidr: ' + rule['CidrIpv4'] +  ' ' + 'to_port: ' + str(rule['ToPort'])+ '\n')
-          time.sleep(3)
+          
           anythingPrinted = True
           #---call to delete rule function---
           revokerule(rule['GroupId'], rule['SecurityGroupRuleId'])        
     except KeyError:
         if anythingPrinted:
+               time.sleep(5)
+               print("waiting 5 sec")
                print("Uploading log file")
                #---change name and call the S3 function
                os.rename(log_file_name, datelogfile)
