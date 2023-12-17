@@ -14,5 +14,5 @@ COPY . /scanner/
 RUN pip install --no-cache-dir boto3 
     # pip install dryable
 
-# CMD ["python", "-u", "script.py"]
-CMD ["echo","-u", "Hello from Docker!"]
+CMD ["python", "-u", "script.py"]
+# CMD ["echo","-u", "Hello from Docker!"]
