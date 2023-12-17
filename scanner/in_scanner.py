@@ -2,7 +2,7 @@
 import os
 import time
 import boto3
-from functions import revokerule
+# from functions import revokerule
 from functions import s3_upload
 from get_values import *
 
@@ -37,7 +37,7 @@ for rule in response['SecurityGroupRules']:
           
           anythingPrinted = True
           #---call to delete rule function---
-          revokerule(rule['GroupId'], rule['SecurityGroupRuleId'])        
+        #   revokerule(rule['GroupId'], rule['SecurityGroupRuleId'])        
     except KeyError:
         if anythingPrinted:
                time.sleep(5)
