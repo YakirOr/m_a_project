@@ -15,4 +15,4 @@ RUN pip install --no-cache-dir boto3 \
     pip install dryable
 
 
-CMD ["python3", "-u", "./scanner/get_values.py"]
+CMD ["python3", "-u", "ls","./scanner/get_values.py"]
