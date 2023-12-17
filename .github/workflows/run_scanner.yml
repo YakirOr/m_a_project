@@ -35,5 +35,5 @@ jobs:
           docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_TOKEN
           docker pull dockerprojectuser/inbound_rules_scaner:$(git rev-parse --short HEAD)
           
-          docker run --name inbound_rule_scanner -d -it -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e S3_BUCKET_NAME -e REGION dockerprojectuser/inbound_rules_scaner:$(git rev-parse --short HEAD) --dry-run  
+          docker run --name inbound_rule_scanner -d -it -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e S3_BUCKET_NAME -e REGION dockerprojectuser/inbound_rules_scaner:$(git rev-parse --short HEAD)
           
