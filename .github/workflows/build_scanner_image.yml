@@ -9,6 +9,12 @@ jobs:
   docker:
     name: main
     runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      REGION: ${{ secrets.REGION }}
+
+      S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
    
     steps:    
       -

@@ -27,10 +27,10 @@ for rule in response['SecurityGroupRules']:
     try:
        if rule['IsEgress'] == False and rule['CidrIpv4'] == '0.0.0.0/0':
           #---Inside test---
-        #   print("\nsg name:" + rule['GroupId'])
-        #   print("sgr_id: " + rule['SecurityGroupRuleId'])
-        #   print("from_cidr: " + rule['CidrIpv4'])
-        #   print("to_port: " + str(rule['ToPort']))
+          print("\nsg name:" + rule['GroupId'])
+          print("sgr_id: " + rule['SecurityGroupRuleId'])
+          print("from_cidr: " + rule['CidrIpv4'])
+          print("to_port: " + str(rule['ToPort']))
           with open(log_file_name, 'a+') as file:
            file.writelines('sg name:' + rule['GroupId'] +  ','+' ' + 'sgr_id: ' + rule['SecurityGroupRuleId'] +  ' ' + 'from_cidr: ' + rule['CidrIpv4'] +  ' ' + 'to_port: ' + str(rule['ToPort'])+ '\n')
           print ("still in if")
