@@ -15,4 +15,4 @@ RUN pip install --no-cache-dir boto3 \
     pip install dryable
 
 
-CMD ["python", "-u", "/script.py"]
+CMD ["python", "-u", "script.py"]
