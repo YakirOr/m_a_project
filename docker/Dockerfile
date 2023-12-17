@@ -14,5 +14,5 @@ COPY . /scanner/
 RUN pip install --no-cache-dir boto3 
     # pip install dryable
 
- CMD ["python", "-u", "/scanner/script.py"]
+ CMD ["pwd","ls","python", "-u", "/scanner/script.py"]
 # CMD ["python", "-u", "/scanner/get_values.py"]
