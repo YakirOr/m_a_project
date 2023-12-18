@@ -18,8 +18,6 @@ COPY . /scanner/
 
 RUN pip install --no-cache-dir boto3 
     # pip install dryable
-RUN apt-get update && apt-get install -y expect
 
 
-
-CMD ["unbuffer", "python", "-u", "scanner/get_values.py"]
+CMD ["python", "-u", "scanner/in_scanner.py"]
