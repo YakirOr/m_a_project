@@ -12,4 +12,4 @@ COPY . /scanner/
 
 RUN pip install --no-cache-dir boto3 
 
-CMD ["python","scanner/in_scanner.py --dry-run"]
+CMD ["python","scanner/in_scanner.py"]
