@@ -7,7 +7,7 @@ from botocore.exceptions import ClientError
 s3 = session.client('s3')
 client = session.client('ec2')
 
-@dryable.Dryable()
+# @dryable.Dryable()
 def revokerule(Group_Id, sgr_Id):
     try:
      delete= client.revoke_security_group_ingress(
