@@ -1,5 +1,5 @@
-import os
-import boto3
+# import os
+# import boto3
 from get_values import *
 from botocore.exceptions import ClientError
 

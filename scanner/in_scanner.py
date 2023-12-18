@@ -1,7 +1,6 @@
-
-import os
+# import os
 import time
-import boto3
+# import boto3
 # from functions import revokerule
 from functions import s3_upload
 from get_values import *
@@ -44,7 +43,7 @@ for rule in response['SecurityGroupRules']:
           #---call to delete rule function---
         #   revokerule(rule['GroupId'], rule['SecurityGroupRuleId'])        
     except KeyError:
-       print("Sorry, KeyError was occurred ")
+       print("Sorry, KeyError occurred for rule: {rule} ")
 
 if anythingPrinted:
     time.sleep(5)

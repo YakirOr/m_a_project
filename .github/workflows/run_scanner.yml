@@ -27,21 +27,11 @@ jobs:
           name: Get the last commit hash of master
           run: |
             git fetch --depth=1 origin main
-            echo "The last commit hash in master is $(git rev-parse --short HEAD)"
-            conn=$(git rev-parse --short HEAD)
-            echo $conn
+            $(git rev-parse --short HEAD)
+            
       -
         name: Run Docker container
         run: |
           docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_TOKEN
           docker pull dockerprojectuser/inbound_rules_scaner:$(git rev-parse --short HEAD)
           docker run --rm -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e S3_BUCKET_NAME -e REGION dockerprojectuser/inbound_rules_scaner:$(git rev-parse --short HEAD)
-        # docker run --name inbound_rule_scanner -t -it -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e S3_BUCKET_NAME -e REGION dockerprojectuser/inbound_rules_scaner:$(git rev-parse --short HEAD)
-         
-          
-      - 
-          name: Debug
-          run: |
-            echo "Current directory: $(pwd)"
-            echo "Contents of the directory: $(ls -a)"
-          
