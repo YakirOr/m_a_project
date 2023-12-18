@@ -9,7 +9,7 @@ client = session.client('ec2')
 
 # @dryable.Dryable()
 def revokerule(Group_Id, sgr_Id):
- if not args:
+ if not dry_run:
     try:
      delete= client.revoke_security_group_ingress(
         GroupId=Group_Id,
