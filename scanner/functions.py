@@ -1,6 +1,7 @@
 # import os
 # import boto3
 from get_values import *
+from in_scanner import dry_run
 from botocore.exceptions import ClientError
 
 
