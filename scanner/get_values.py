@@ -7,10 +7,10 @@ import dryable
 dryable.set( '--dry-run' in sys.argv )
 
 # Get env variables
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-REGION = os.environ.get('REGION')
-S3_BUCKET_NAME = os.environ.get('S3_BUCKET_NAME')
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+REGION = os.getenv('REGION')
+S3_BUCKET_NAME = os.getenv('S3_BUCKET_NAME')
 
 
 #build aws session
