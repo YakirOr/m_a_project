@@ -23,6 +23,7 @@ anythingPrinted = False
 
 print("Starting scanning")
 response = ec2.describe_security_group_rules()
+
 for rule in response['SecurityGroupRules']:
     try:
        if rule['IsEgress'] == False and rule['CidrIpv4'] == '0.0.0.0/0':
@@ -31,23 +32,28 @@ for rule in response['SecurityGroupRules']:
           print("sgr_id: " + rule['SecurityGroupRuleId'])
           print("from_cidr: " + rule['CidrIpv4'])
           print("to_port: " + str(rule['ToPort']))
+          
           with open(log_file_name, 'a+') as file:
-           file.writelines('sg name:' + rule['GroupId'] +  ','+' ' + 'sgr_id: ' + rule['SecurityGroupRuleId'] +  ' ' + 'from_cidr: ' + rule['CidrIpv4'] +  ' ' + 'to_port: ' + str(rule['ToPort'])+ '\n')
+           file.writelines('sg name:' + rule['GroupId'] +  ','+
+                           ' ' + 'sgr_id: ' + rule['SecurityGroupRuleId'] +  
+                           ' ' + 'from_cidr: ' + rule['CidrIpv4'] +  
+                           ' ' + 'to_port: ' + str(rule['ToPort'])+ '\n')
           print ("still in if")
           
           anythingPrinted = True
           #---call to delete rule function---
         #   revokerule(rule['GroupId'], rule['SecurityGroupRuleId'])        
     except KeyError:
-        if anythingPrinted:
-               time.sleep(5)
-               print("waiting 5 sec")
-               print("Uploading log file")
-               #---change name and call the S3 function
-               os.rename(log_file_name, datelogfile)
-               s3_upload(datelogfile,s3_bucket_name)
+       print("Sorry, KeyError was occurred ")
 
-if not anythingPrinted:
+if anythingPrinted:
+    time.sleep(5)
+    print("waiting 5 sec")
+    print("Uploading log file")
+    #---change name and call the S3 function
+    os.rename(log_file_name, datelogfile)
+    s3_upload(datelogfile,s3_bucket_name)
+else:
     print("There is no open inbound rules in the existing account")
 
 

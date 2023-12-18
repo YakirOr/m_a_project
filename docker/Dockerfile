@@ -20,4 +20,4 @@ RUN pip install --no-cache-dir boto3
     # pip install dryable
 
 
-CMD ["python", "-u", "scanner/in_scanner.py"]
+CMD ["python","scanner/in_scanner.py"]
