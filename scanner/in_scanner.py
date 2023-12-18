@@ -1,7 +1,7 @@
 # import os
 import time
 # import boto3
-# from functions import revokerule
+from functions import revokerule
 from functions import s3_upload
 from get_values import *
 
@@ -32,22 +32,20 @@ for rule in response['SecurityGroupRules']:
           print("from_cidr: " + rule['CidrIpv4'])
           print("to_port: " + str(rule['ToPort']))
           
-          with open(log_file_name, 'a+') as file:
+          with open(log_file_name, 'w') as file:
            file.writelines('sg name:' + rule['GroupId'] +  ','+
                            ' ' + 'sgr_id: ' + rule['SecurityGroupRuleId'] +  
                            ' ' + 'from_cidr: ' + rule['CidrIpv4'] +  
                            ' ' + 'to_port: ' + str(rule['ToPort'])+ '\n')
-          print ("still in if")
-          
+                    
           anythingPrinted = True
+
           #---call to delete rule function---
-        #   revokerule(rule['GroupId'], rule['SecurityGroupRuleId'])        
+          revokerule(rule['GroupId'], rule['SecurityGroupRuleId'])        
     except KeyError:
        print("Sorry, KeyError occurred for rule: {rule} ")
 
 if anythingPrinted:
-    time.sleep(5)
-    print("waiting 5 sec")
     print("Uploading log file")
     #---change name and call the S3 function
     os.rename(log_file_name, datelogfile)

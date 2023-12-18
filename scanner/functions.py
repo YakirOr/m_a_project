@@ -9,6 +9,7 @@ client = session.client('ec2')
 
 # @dryable.Dryable()
 def revokerule(Group_Id, sgr_Id):
+ if not args:
     try:
      delete= client.revoke_security_group_ingress(
         GroupId=Group_Id,
@@ -19,6 +20,8 @@ def revokerule(Group_Id, sgr_Id):
         raise
     else:
         print("The ingress rule successfully deleted")
+ else:
+    print("This is dry run mode")
 
 
 
