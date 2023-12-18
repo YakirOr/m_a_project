@@ -10,6 +10,18 @@ s3 = session.client('s3')
 ec2 = session.client('ec2')
 
 
+
+# dryable.set( '--dry-run' in sys.argv )
+PARSER = argparse.ArgumentParser()
+PARSER.add_argument('--dry-run', action='store_true')
+args = PARSER.parse_args()
+
+# Check if it's a dry run
+dry_run = args.dry_run
+
+
+
+
 #---file-name---
 timestr = time.strftime("D%Y_%m_%d-T%H_%M_%S")
 datelogfile = 'log-' + timestr +'.txt'
