@@ -27,7 +27,7 @@ jobs:
           name: Get the last commit hash of master
           run: |
             git fetch --depth=1 origin main
-            $(git rev-parse --short HEAD)
+        # $(git rev-parse --short HEAD)
             
       -
         name: Run Docker container
