@@ -6,13 +6,13 @@ import argparse
 # import dryable
 
 
-# # dryable.set( '--dry-run' in sys.argv )
-# PARSER = argparse.ArgumentParser()
-# PARSER.add_argument('--dry-run', action='store_true')
-# args = PARSER.parse_args()
+# dryable.set( '--dry-run' in sys.argv )
+PARSER = argparse.ArgumentParser()
+PARSER.add_argument('--dry-run', action='store_true')
+args = PARSER.parse_args()
 
-# # Check if it's a dry run
-# dry_run = args.dry_run
+# Check if it's a dry run
+dry_run = args.dry_run
 
 # Get env variables
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
