@@ -22,17 +22,16 @@ jobs:
 
     steps:
       -
-        uses: actions/checkout@v2
+          uses: actions/checkout@v2
       -
-        name: get commit
-        run: |
-          $(git rev-parse --short HEAD)
-
+          name: Get the last commit hash of master
+          run: |
+            last_commit=$(git rev-parse --short HEAD)
+            $last_commit
+            
       -
         name: Run Docker container
         run: |
-          $ git rev-parse --short HEAD
-          
           docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_TOKEN
           docker pull dockerprojectuser/inbound_rules_scaner:$(git rev-parse --short HEAD)
-          docker run --rm -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e S3_BUCKET_NAME -e REGION dockerprojectuser/inbound_rules_scaner:$last_commit --dry-run
+          docker run --rm -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e S3_BUCKET_NAME -e REGION dockerprojectuser/inbound_rules_scaner:$(git rev-parse --short HEAD) --dry-run
