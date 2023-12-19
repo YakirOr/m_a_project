@@ -23,9 +23,12 @@ jobs:
     steps:
       -
           uses: actions/checkout@v2
+          with:
+            ref: ${{ github.event.pull_request.head.sha }}
       -
           name: Get the last commit hash of master
           run: |
+            echo ${{ github.event.pull_request.head.sha }}
             last_commit= git rev-parse --short HEAD
             $last_commit
             
