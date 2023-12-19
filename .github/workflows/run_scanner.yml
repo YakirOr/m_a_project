@@ -27,7 +27,7 @@ jobs:
       -
         name: Run Docker container
         run: |
-          $(git rev-parse --short HEAD)
+          $ git rev-parse --short HEAD
           
           docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_TOKEN
           docker pull dockerprojectuser/inbound_rules_scaner:$(git rev-parse --short HEAD)
