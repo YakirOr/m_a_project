@@ -24,12 +24,6 @@ response = ec2.describe_security_group_rules()
 for rule in response['SecurityGroupRules']:
     try:
        if rule['IsEgress'] == False and rule['CidrIpv4'] == '0.0.0.0/0':
-          #---Inside test---
-          print("\nsg name:" + rule['GroupId'])
-          print("sgr_id: " + rule['SecurityGroupRuleId'])
-          print("from_cidr: " + rule['CidrIpv4'])
-          print("to_port: " + str(rule['ToPort']))
-          
           with open(log_file_name, 'w') as file:
            file.writelines('sg name:' + rule['GroupId'] +  ','+
                            ' ' + 'sgr_id: ' + rule['SecurityGroupRuleId'] +  

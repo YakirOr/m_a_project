@@ -1,5 +1,3 @@
-# import os
-# import boto3
 from get_values import *
 from botocore.exceptions import ClientError
 
@@ -7,7 +5,6 @@ from botocore.exceptions import ClientError
 s3 = session.client('s3')
 client = session.client('ec2')
 
-# @dryable.Dryable()
 def revokerule(Group_Id, sgr_Id):
  if not dry_run:
     try:
@@ -22,8 +19,7 @@ def revokerule(Group_Id, sgr_Id):
         print("The ingress rule successfully deleted")
  else:
     print("This is dry run mode")
-
-
+    
 
 def s3_upload(file_name , bucket_name):
       s3.upload_file(file_name, bucket_name, file_name)
