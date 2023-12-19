@@ -1,6 +1,4 @@
-# import os
 import time
-# import boto3
 from functions import revokerule
 from functions import s3_upload
 from get_values import *
@@ -8,18 +6,6 @@ from get_values import *
 
 s3 = session.client('s3')
 ec2 = session.client('ec2')
-
-
-
-# # dryable.set( '--dry-run' in sys.argv )
-# PARSER = argparse.ArgumentParser()
-# PARSER.add_argument('--dry-run', action='store_true')
-# args = PARSER.parse_args()
-
-# # Check if it's a dry run
-# dry_run = args.dry_run
-
-
 
 
 #---file-name---
@@ -55,7 +41,7 @@ for rule in response['SecurityGroupRules']:
           #---call to delete rule function---
           revokerule(rule['GroupId'], rule['SecurityGroupRuleId'])        
     except KeyError:
-       print("Sorry, KeyError occurred for rule: {rule} ")
+       print("Sorry, KeyError occurred for rule: " + rule['IsEgress'] + " " + rule['CidrIpv4'])
 
 if anythingPrinted:
     print("Uploading log file")
