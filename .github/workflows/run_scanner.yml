@@ -27,7 +27,7 @@ jobs:
           name: Get the last commit hash of master
           run: |
             
-            last_commit= git rev-parse --short HEAD
+            last_commit: ${git rev-parse --short HEAD}
             $last_commit
             
       -
