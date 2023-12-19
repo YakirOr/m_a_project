@@ -41,7 +41,7 @@ for rule in response['SecurityGroupRules']:
           #---call to delete rule function---
           revokerule(rule['GroupId'], rule['SecurityGroupRuleId'])        
     except KeyError:
-       print("Sorry, KeyError occurred for rule: " + rule['IsEgress'] + " " + rule['CidrIpv4'])
+       print("Sorry, KeyError occurred for rule: " + rule['SecurityGroupRuleId'] )
 
 if anythingPrinted:
     print("Uploading log file")
