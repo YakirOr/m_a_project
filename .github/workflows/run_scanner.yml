@@ -27,12 +27,13 @@ jobs:
           name: Get the last commit hash of master
           run: |
             
-            last_commit: ${git rev-parse --short HEAD}
+            last_commit= git rev-parse --short HEAD
             $last_commit
             
       -
         name: Run Docker container
         run: |
+          echo $last_commit
           docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_TOKEN
           docker pull dockerprojectuser/inbound_rules_scaner:$last_commit
           docker run --rm -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e S3_BUCKET_NAME -e REGION dockerprojectuser/inbound_rules_scaner:$last_commit --dry-run
