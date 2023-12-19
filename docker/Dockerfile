@@ -14,4 +14,4 @@ RUN pip install --no-cache-dir boto3
 
 ENTRYPOINT  ["python","scanner/in_scanner.py"]
 
-CMD [ "--dry-run"]
+# CMD [ "--dry-run"]
