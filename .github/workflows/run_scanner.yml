@@ -27,7 +27,7 @@ jobs:
       -
         name: Run Docker container
         run: |
-          last_commit=$(git rev-parse --short HEAD)
+          last_commit=git rev-parse --short HEAD
           $last_commit
           docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_TOKEN
           docker pull dockerprojectuser/inbound_rules_scaner:$(git rev-parse --short HEAD)
