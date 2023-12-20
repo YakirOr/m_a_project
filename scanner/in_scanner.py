@@ -16,18 +16,23 @@ log_file_name=str('log.txt')
 
 s3_bucket_name=S3_BUCKET_NAME
 
+regions = [region['RegionName']
+    for region in ec2.describe_regions()['Regions']]
+
+
 anythingPrinted = False
 
 print("Starting scanning")
 response = ec2.describe_security_group_rules()
-
-for rule in response['SecurityGroupRules']:
+for region in regions:
+ for rule in response['SecurityGroupRules']:
     try:
        if rule['IsEgress'] == False and rule['CidrIpv4'] == '0.0.0.0/0':
           with open(log_file_name, 'a+') as file:
            file.writelines('sg name:' + rule['GroupId'] +  ','+
                            ' ' + 'sgr_id: ' + rule['SecurityGroupRuleId'] +  
                            ' ' + 'from_cidr: ' + rule['CidrIpv4'] +  
+                           ' ' + 'region: ' + region +  
                            ' ' + 'to_port: ' + str(rule['ToPort'])+ '\n')
                     
           anythingPrinted = True
